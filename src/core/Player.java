@@ -2,42 +2,84 @@ package core;
 
 import java.util.Random;
 
-public abstract class Player {
+import static core.GameState.nTeams;
 
+public abstract class Player {
+    protected ForwardModel forwardModel;
     int playerID;
     long randomSeed;
-    protected Random random;
+    protected Random randomGenerator;
     int teamID;
-    int gameStatus;  // -2 = undecided, -1 = loss, 0 = tie, 1 = win
+    public int gameStatus;  // -2 = undecided, -1 = lose, 0 = tie, 1 = win  TODO: turn into an enum to remove hardcoded variables
     int nOpponentsTagged;
     int position;
 
+    public Player() {}
+
     public Player(long randomSeed) {
         this.randomSeed = randomSeed;
-        setGameStatus(-2);
+        this.gameStatus = -2;
         nOpponentsTagged = 0;
-        random = new Random(randomSeed);
+        randomGenerator = new Random(randomSeed);
     }
 
+    /**
+     * This player was tagged by another!
+     * @param other - the player who just tagged this player
+     */
     void setTagged(Player other) {
-        setGameStatus(-1);
+        this.gameStatus = -1;
         other.nOpponentsTagged++;
     }
 
-    void setGameStatus(int newStatus) {
-        this.gameStatus = newStatus;
-    }
-
+    /**
+     * Swap this player's team
+     */
     void swapTeam() {
-        teamID = (teamID + 1) % 2;
+        teamID = (teamID + 1) % nTeams;
 
 //        if (teamID == 0) teamID = 1;
 //        else teamID = 0;
     }
 
     /**
-     * @return an action, 0 - do nothing, 1 - up, 2 - right, 3 - down, 4 - left, 5 - tag
+     * Get an action from this player, abstract to be implemented by subclasses.
+     * @param gameState - current game state
+     * @return - integer, 0 - do nothing, 1 - up, 2 - right, 3 - down, 4 - left, 5 - tag
      */
-    protected abstract int act();
+    public abstract int act(GameState gameState);
 
+    /**
+     * Copy the state of the player
+     * @return - a new Player object with the same state
+     */
+    protected abstract Player _copy();
+
+    /**
+     * Super class copy, copies all properties in the super class (so subclasses don't need to worry about it).
+     * @return - a new Player object with the same state
+     */
+    public Player copy() {
+        Player p = _copy();
+        p.playerID = playerID;
+        p.randomSeed = randomSeed;
+        p.randomGenerator = new Random(randomSeed);
+        p.teamID = teamID;
+        p.gameStatus = gameStatus;
+        p.nOpponentsTagged = nOpponentsTagged;
+        p.position = position;
+        return p;
+    }
+
+    @Override
+    public String toString() {
+        String[] pName = getClass().getName().split("\\.");
+        return pName[pName.length-1] + "{" +
+                + playerID +
+                ", teamID=" + teamID +
+                ", gameStatus=" + gameStatus +
+                ", nOpponentsTagged=" + nOpponentsTagged +
+                ", position=" + position +
+                '}';
+    }
 }

@@ -1,15 +1,22 @@
 package players;
 
+import core.GameState;
 import core.Player;
 
 public class RandomPlayer extends Player {
 
+    public RandomPlayer() {}
     public RandomPlayer(long randomSeed) {
         super(randomSeed);
     }
 
     @Override
-    protected int act() {
-        return random.nextInt(6);
+    public int act(GameState gameState) {
+        return randomGenerator.nextInt(6);
+    }
+
+    @Override
+    protected Player _copy() {
+        return new RandomPlayer();
     }
 }
