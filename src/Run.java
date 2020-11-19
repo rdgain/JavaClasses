@@ -9,31 +9,14 @@ public class Run {
         boolean gameEnded = false;
         System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
 
-        playerX++;
-        playerY++;
-        gameTick++;
-        System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
-
-        playerX++;
-        playerY++;
-        gameTick++;
-        System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
-
-        playerX++;
-        playerY++;
-        gameTick++;
-        System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
-
-        playerX++;
-        playerY++;
-        gameTick++;
-        System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
-
-        playerX++;
-        playerY++;
-        gameTick++;
-        gameEnded = true;
-        System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
-
+        while(!gameEnded) {
+            playerX++;
+            playerY++;
+            gameTick++;
+            if (playerX == 5 && playerY == 5) {
+                gameEnded = true;
+            }
+            System.out.println("T: " + gameTick + "; Ended? " + gameEnded + "; player: " + playerName + "; position:(" + playerX + "," + playerY + ")");
+        }
     }
 }
