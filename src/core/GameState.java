@@ -1,5 +1,8 @@
 package core;
 
+import utils.GraphNode;
+import java.util.HashMap;
+
 public class GameState {
     static final int maxGameTicks = 5;
     static final int nTeams = 2;
@@ -8,6 +11,9 @@ public class GameState {
     int gameTick;
     Button button;
     Player[] players;
+
+    HashMap<Integer, GraphNode> maze;
+    int width, height;
 
     public GameState() {}
 

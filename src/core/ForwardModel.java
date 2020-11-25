@@ -1,6 +1,11 @@
 package core;
 
+import utils.GraphNode;
+
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import static core.GameState.nTeams;
 
@@ -22,6 +27,12 @@ public class ForwardModel {
             players[i].position = new Random().nextInt(288);
             players[i].forwardModel = this;
         }
+
+//        gameState.maze = new HashMap<>();
+        GraphNode.Container container = GraphNode.readMazeFromFile();
+        gameState.maze = container.graph;
+        gameState.width = container.width;
+        gameState.height = container.height;
     }
 
     /**
@@ -32,7 +43,40 @@ public class ForwardModel {
     public void next(int[] actions, GameState gameState) {
         gameState.gameTick += 1;
 
-        // TODO: handle actions
+        // Handle actions
+        for (int i = 0; i < actions.length; i++) {
+            int action = actions[i];
+
+            if (action == 0) continue; // Do nothing
+
+            int position = gameState.players[i].position;
+            HashMap<Integer, Integer> connections = gameState.maze.get(position).connections;
+
+            if (action == 5) {
+                // Tag a player
+                Collection<Integer> neighbouringPositions = connections.values();
+                int neighbourPlayers = 0;
+                int neighbour = -1;
+                for (int p = 0; p < gameState.players.length; p++) {
+                    if (p != i) {
+                        if (neighbouringPositions.contains(gameState.players[p].position)) {
+                            neighbourPlayers ++;
+                            neighbour = p;
+                        }
+                    }
+                }
+                if (neighbourPlayers == 1) {
+                    gameState.players[neighbour].setTagged(gameState.players[i]);
+                }
+            } else {
+                // Move
+                if (connections.containsKey(action)) {
+                    gameState.players[i].position = connections.get(action);
+                } else {
+                    System.out.println("Illegal move action ");
+                }
+            }
+        }
 
         // Check if player pressed the button
         int nPlayersAlive = 0;
