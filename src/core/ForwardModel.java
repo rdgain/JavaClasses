@@ -17,14 +17,19 @@ public class ForwardModel {
      * @param gameState - game state to set up
      */
     public void setup(Player[] players, GameState gameState) {
+        int[] playerStartingPositions = new int[]{
+                17, 122, 242, 29, 134, 254
+        };
+
         gameState.gameTick = 0;
         gameState.gameEnded = false;
-        gameState.button = new Button(3);
+        gameState.button = new Button(128);
         gameState.players = players;
         for (int i = 0; i < players.length; i++) {
             players[i].playerID = i;
             players[i].teamID = (i < players.length/2? 0 : 1);  // TODO: modify to work with any number of teams nTeams
-            players[i].position = new Random().nextInt(288);
+            players[i].position = playerStartingPositions[i];
+//            players[i].position = new Random().nextInt(288);
             players[i].forwardModel = this;
         }
 
@@ -43,18 +48,20 @@ public class ForwardModel {
     public void next(int[] actions, GameState gameState) {
         gameState.gameTick += 1;
 
-        // Handle actions
+        // Handle actions, one for each player
         for (int i = 0; i < actions.length; i++) {
             int action = actions[i];
 
-            if (action == 0) continue; // Do nothing
+            if (action <= 0) continue; // Do nothing
 
+            // Find this player's position and neighbouring positions
             int position = gameState.players[i].position;
             HashMap<Integer, Integer> connections = gameState.maze.get(position).connections;
 
             if (action == 5) {
                 // Tag a player
                 Collection<Integer> neighbouringPositions = connections.values();
+                // Count the number of players in adjacent positions, and save the ID of the last such player
                 int neighbourPlayers = 0;
                 int neighbour = -1;
                 for (int p = 0; p < gameState.players.length; p++) {
@@ -66,15 +73,17 @@ public class ForwardModel {
                     }
                 }
                 if (neighbourPlayers == 1) {
+                    // If there is only 1 adjacent player, tag them!
                     gameState.players[neighbour].setTagged(gameState.players[i]);
                 }
             } else {
-                // Move
+                // Move in the requested direction, if possible
                 if (connections.containsKey(action)) {
                     gameState.players[i].position = connections.get(action);
-                } else {
-                    System.out.println("Illegal move action ");
                 }
+//                else {
+//                    System.out.println("Illegal move action ");
+//                }
             }
         }
 

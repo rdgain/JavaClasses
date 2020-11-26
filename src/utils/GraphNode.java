@@ -36,6 +36,12 @@ public class GraphNode {
                 '}';
     }
 
+    public GraphNode copy() {
+        GraphNode n = new GraphNode(this.id);
+        n.connections = new HashMap<>(connections);
+        return n;
+    }
+
     public static class Container {
         public HashMap<Integer, GraphNode> graph;
         public int width;

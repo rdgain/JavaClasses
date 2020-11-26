@@ -5,8 +5,10 @@ import core.Player;
 
 public class RandomPlayer extends Player {
 
-    public RandomPlayer() {}
-    public RandomPlayer(long randomSeed) {
+    public RandomPlayer() {
+        this(null);
+    }
+    public RandomPlayer(Long randomSeed) {
         super(randomSeed);
     }
 

@@ -2,9 +2,10 @@ package core;
 
 import utils.GraphNode;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameState {
-    static final int maxGameTicks = 5;
+    static final int maxGameTicks = 1000;
     static final int nTeams = 2;
 
     public boolean gameEnded;
@@ -29,6 +30,10 @@ public class GameState {
         gs.players = new Player[players.length];
         for (int i = 0; i < players.length; i++) {
             gs.players[i] = players[i].copy();
+        }
+        gs.maze = new HashMap<>();
+        for (Map.Entry<Integer, GraphNode> e: maze.entrySet()) {
+            gs.maze.put(e.getKey(), e.getValue().copy());
         }
         return gs;
     }

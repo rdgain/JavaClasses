@@ -16,7 +16,8 @@ public abstract class Player {
 
     public Player() {}
 
-    public Player(long randomSeed) {
+    public Player(Long randomSeed) {
+        if (randomSeed == null) randomSeed = System.currentTimeMillis();
         this.randomSeed = randomSeed;
         this.gameStatus = -2;
         nOpponentsTagged = 0;
