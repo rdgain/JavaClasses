@@ -11,6 +11,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,21 +36,35 @@
       <recent name="E:\Work\Github\JavaClasses" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="core" />
+      <recent name="pathfinding" />
       <recent name="graphToGridDraw" />
+      <recent name="core" />
       <recent name="utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Work\Github\JavaClasses\src\mazeGraphDraw" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run">
+  <component name="RunManager" selected="Application.TestPathfinding">
+    <configuration name="BFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pathfinding.BFS" />
+      <module name="JavaClasses" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pathfinding.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="graphToGridDraw.GUI" />
       <module name="JavaClasses" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="graphToGridDraw.*" />
+          <option name="PATTERN" value="pathfinding.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -71,8 +86,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestPathfinding" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pathfinding.TestPathfinding" />
+      <module name="JavaClasses" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pathfinding.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestPathfinding" />
+        <item itemvalue="Application.BFS" />
         <item itemvalue="Application.Run" />
         <item itemvalue="Application.GUI" />
         <item itemvalue="Application.GraphNode" />
@@ -93,7 +123,7 @@
       <workItem from="1606301955821" duration="7715000" />
       <workItem from="1606383122087" duration="35000" />
       <workItem from="1606410937689" duration="3354000" />
-      <workItem from="1606730952199" duration="7184000" />
+      <workItem from="1606730952199" duration="14026000" />
     </task>
     <servers />
   </component>
@@ -105,57 +135,48 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="203" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606326728685" />
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1606737895345">
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1606745567570">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606737895345" />
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606745567570" />
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606325975621">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1606325975621" />
-    <state width="1537" height="272" key="GridCell.Tab.0.bottom" timestamp="1606738190520">
+    <state width="1537" height="133" key="GridCell.Tab.0.bottom" timestamp="1606746934451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="272" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606738190520" />
-    <state width="1537" height="272" key="GridCell.Tab.0.center" timestamp="1606738190520">
+    <state width="1537" height="133" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606746934451" />
+    <state width="1537" height="133" key="GridCell.Tab.0.center" timestamp="1606746934450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="272" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606738190520" />
-    <state width="1537" height="272" key="GridCell.Tab.0.left" timestamp="1606738190520">
+    <state width="1537" height="133" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606746934450" />
+    <state width="1537" height="133" key="GridCell.Tab.0.left" timestamp="1606746934450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="272" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606738190520" />
-    <state width="1537" height="272" key="GridCell.Tab.0.right" timestamp="1606738190520">
+    <state width="1537" height="133" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606746934450" />
+    <state width="1537" height="133" key="GridCell.Tab.0.right" timestamp="1606746934451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="272" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606738190520" />
-    <state width="1537" height="182" key="GridCell.Tab.1.bottom" timestamp="1606737624814">
+    <state width="1537" height="133" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606746934451" />
+    <state width="1537" height="141" key="GridCell.Tab.1.bottom" timestamp="1606744375521">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="182" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606737624814" />
-    <state width="1537" height="182" key="GridCell.Tab.1.center" timestamp="1606737624814">
+    <state width="1537" height="141" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606744375521" />
+    <state width="1537" height="141" key="GridCell.Tab.1.center" timestamp="1606744375521">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="182" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606737624814" />
-    <state width="1537" height="182" key="GridCell.Tab.1.left" timestamp="1606737624814">
+    <state width="1537" height="141" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606744375521" />
+    <state width="1537" height="141" key="GridCell.Tab.1.left" timestamp="1606744375521">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="182" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606737624814" />
-    <state width="1537" height="182" key="GridCell.Tab.1.right" timestamp="1606737624814">
+    <state width="1537" height="141" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606744375521" />
+    <state width="1537" height="141" key="GridCell.Tab.1.right" timestamp="1606744375521">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="182" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606737624814" />
+    <state width="1537" height="141" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606744375521" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/utils/GraphNode.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="-2 &gt; maxValue" language="JAVA" />
