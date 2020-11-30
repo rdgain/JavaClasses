@@ -37,7 +37,7 @@ public class PlayerInfoView extends JComponent {
                 nodeYScreen = 0;
             } else {
                 nodeXScreen = (i-3)*cellSize + (i-3) * spacing;
-                nodeYScreen = offsetY*2 + 30 + cellSize;
+                nodeYScreen = offsetY*2 + 45 + cellSize;
             }
 
             Color team, edge;
@@ -60,10 +60,13 @@ public class PlayerInfoView extends JComponent {
             g.setColor(edge);
             g.drawRect(nodeXScreen + cellSize * 3 / 4, offsetY + nodeYScreen + cellSize * 3 / 4, cellSize / 2, cellSize / 2);
 
+            String score = "Score: " + p.getScore();
+            g.drawString(score, nodeXScreen, offsetY + nodeYScreen + cellSize*2);
+
             String name = p.getClass().getName();
             String[] split = name.split("\\.");
             String pName = split[split.length-1].replace("Player", "");
-            g.drawString("" + pName, nodeXScreen, offsetY + nodeYScreen + cellSize*2);
+            g.drawString(pName, nodeXScreen, offsetY + nodeYScreen + cellSize*2 + 15);
 
             i++;
         }
@@ -71,7 +74,7 @@ public class PlayerInfoView extends JComponent {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(3*cellSize+2*spacing, cellSize*2+ 80 + offsetY*4);
+        return new Dimension(3*cellSize+2*spacing, cellSize*2+ 90 + offsetY*4);
     }
 
     public void update(GameState gameState) {

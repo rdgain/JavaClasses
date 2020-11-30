@@ -13,6 +13,7 @@ public abstract class Player {
     public int gameStatus;  // -2 = undecided, -1 = lose, 0 = tie, 1 = win  TODO: turn into an enum to remove hardcoded variables
     int nOpponentsTagged;
     int position;
+    int score;
 
     public Player(Long randomSeed) {
         if (randomSeed == null) {
@@ -70,6 +71,7 @@ public abstract class Player {
         p.gameStatus = gameStatus;
         p.nOpponentsTagged = nOpponentsTagged;
         p.position = position;
+        p.score = score;
         return p;
     }
 
@@ -89,15 +91,19 @@ public abstract class Player {
         return playerID;
     }
 
+    public int getScore() {
+        return score;
+    }
+
     @Override
     public String toString() {
-        String[] pName = getClass().getName().split("\\.");
-        return pName[pName.length-1] + "{" +
-                + playerID +
+        return "Player{" +
+                "playerID=" + playerID +
                 ", teamID=" + teamID +
                 ", gameStatus=" + gameStatus +
                 ", nOpponentsTagged=" + nOpponentsTagged +
                 ", position=" + position +
+                ", score=" + score +
                 '}';
     }
 }

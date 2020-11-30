@@ -1,12 +1,15 @@
 package core;
 
 import utils.GraphNode;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameState {
     static final int maxGameTicks = 1000;
     static final int nTeams = 2;
+    static final int nTotalPickups = 50;
 
     public boolean gameEnded;
     int gameTick;
@@ -15,6 +18,9 @@ public class GameState {
 
     HashMap<Integer, GraphNode> maze;
     int width, height;
+
+    ArrayList<Pickup> pickups;
+    int nPickups;
 
     public GameState() {}
 
@@ -37,6 +43,12 @@ public class GameState {
         }
         gs.width = width;
         gs.height = height;
+
+        gs.pickups = new ArrayList<>();
+        for (Pickup k: pickups) {
+            gs.pickups.add(k.copy());
+        }
+        gs.nPickups = nPickups;
         return gs;
     }
 
@@ -70,6 +82,18 @@ public class GameState {
 
     public int getGameStatus(int playerID) {
         return players[playerID].gameStatus;
+    }
+
+    public ArrayList<Pickup> getPickups() {
+        return pickups;
+    }
+
+    public int getNPickups() {
+        return nPickups;
+    }
+
+    public static int getNTotalPickups() {
+        return nTotalPickups;
     }
 
     @Override

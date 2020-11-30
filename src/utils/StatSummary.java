@@ -28,7 +28,7 @@ public class StatSummary {
     private double mean;
     private double sd;
 
-    private int wins, losses, draws;
+    private int wins, losses, draws, score;
 
     // trick class loader into loading this now
     // private static StatisticalTests dummy = new StatisticalTests();
@@ -50,6 +50,7 @@ public class StatSummary {
         wins = 0;
         losses = 0;
         draws = 0;
+        score = 0;
         // ensure that the first number to be
         // added will fix up min and max to
         // be that number
@@ -66,6 +67,7 @@ public class StatSummary {
         wins = 0;
         losses = 0;
         draws = 0;
+        score = 0;
         // ensure that the first number to be
         // added will fix up min and max to
         // be that number
@@ -166,7 +168,7 @@ public class StatSummary {
     public void addDraw() {
         draws++;
     }
-
+    public void addScore(int s) { score += s; }
 
     public void add(Number n) {
         add(n.doubleValue());
@@ -188,7 +190,8 @@ public class StatSummary {
         String s = (name == null) ? "" : name + "\n";
         s +=  " wins% = " + winPercent() + "\n" +
                 " draws% = " + drawPercent() + "\n" +
-                " losses% = " + losePercent() + "\n";
+                " losses% = " + losePercent() + "\n" +
+                " score = " + score*1.0/n + "\n";
         return s;
     }
 
@@ -205,6 +208,7 @@ public class StatSummary {
                 " wins% = " + winPercent() + "\n" +
                 " draws% = " + drawPercent() + "\n" +
                 " losses% = " + losePercent() + "\n" +
+                " score = " + score*1.0/n + "\n" +
                 " n   = " + n + "\n";
         return s;
     }

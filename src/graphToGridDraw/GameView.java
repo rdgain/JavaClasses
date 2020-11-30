@@ -2,12 +2,14 @@ package graphToGridDraw;
 
 import core.Button;
 import core.GameState;
+import core.Pickup;
 import core.Player;
 import mazeGraphDraw.Vector2D;
 import utils.GraphNode;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameView extends JComponent {
@@ -31,6 +33,20 @@ public class GameView extends JComponent {
             drawMaze(g);
             drawButton(g);
             drawPlayers(g);
+            drawPickups(g);
+        }
+    }
+
+    private void drawPickups(Graphics2D g) {
+        ArrayList<Pickup> pickups = gameState.getPickups();
+        for (Pickup p: pickups) {
+            if (p.isActive()) {
+                Vector2D pos = posToScreenCoords(p.getPosition());
+                int nodeXScreen = pos.getX();
+                int nodeYScreen = pos.getY();
+                g.setColor(new Color(150, 68, 88));
+                g.fillOval(offsetX + nodeXScreen + cellSize / 3, offsetY + nodeYScreen + cellSize / 3, cellSize/4, cellSize/4);
+            }
         }
     }
 
@@ -53,11 +69,11 @@ public class GameView extends JComponent {
                 }
 
                 g.setColor(Color.black);
-                g.drawString("" + p.getPlayerID(), nodeXScreen + cellSize * 3 / 4, nodeYScreen + cellSize / 2);
+                g.drawString(offsetX + "" + p.getPlayerID(), offsetY + nodeXScreen + cellSize / 4, nodeYScreen + cellSize / 2);
                 g.setColor(team);
-                g.fillRect(nodeXScreen + cellSize * 3 / 4, nodeYScreen + cellSize * 3 / 4, cellSize / 2, cellSize / 2);
+                g.fillRect(offsetX + nodeXScreen + cellSize / 4, offsetY + nodeYScreen + cellSize / 4, cellSize / 2, cellSize / 2);
                 g.setColor(edge);
-                g.drawRect(nodeXScreen + cellSize * 3 / 4, nodeYScreen + cellSize * 3 / 4, cellSize / 2, cellSize / 2);
+                g.drawRect(offsetX + nodeXScreen + cellSize / 4, offsetY + nodeYScreen + cellSize / 4, cellSize / 2, cellSize / 2);
             }
         }
     }
@@ -78,9 +94,9 @@ public class GameView extends JComponent {
         }
 
         g.setColor(fill);
-        g.fillOval(nodeXScreen + cellSize / 2, nodeYScreen + cellSize / 2, cellSize, cellSize);
+        g.fillOval(offsetX + nodeXScreen, offsetY + nodeYScreen, cellSize, cellSize);
         g.setColor(edge);
-        g.drawOval(nodeXScreen + cellSize / 2, nodeYScreen + cellSize / 2, cellSize, cellSize);
+        g.drawOval(offsetX + nodeXScreen, offsetY + nodeYScreen, cellSize, cellSize);
     }
 
     private void drawMaze(Graphics2D g) {

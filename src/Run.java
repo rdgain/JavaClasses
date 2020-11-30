@@ -29,7 +29,7 @@ public class Run {
         // Create game state and forward model instances
         GameState gameState = new GameState();
         ForwardModel forwardModel = new ForwardModel();
-        int nReps = 10;
+        int nReps = 1;
 
         for (int r = 0; r < nReps; r++) {
 
@@ -75,6 +75,7 @@ public class Run {
                 if (status == 1) stats[i].addWin();
                 if (status == 0) stats[i].addDraw();
                 if (status == -1) stats[i].addLoss();
+                stats[i].addScore(players[i].getScore());
             }
             System.out.println();
         }

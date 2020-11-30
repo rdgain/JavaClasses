@@ -2,12 +2,10 @@ package core;
 
 import utils.GraphNode;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import static core.GameState.nTeams;
+import static core.GameState.nTotalPickups;
 
 public class ForwardModel {
 
@@ -38,6 +36,15 @@ public class ForwardModel {
         gameState.maze = container.graph;
         gameState.width = container.width;
         gameState.height = container.height;
+
+        // Add some pickups worth varying amounts of points [0-4] randomly on the board
+        gameState.pickups = new ArrayList<>();
+        gameState.nPickups = nTotalPickups;
+        Random r = new Random();
+        int maxPos = gameState.width * gameState.height;
+        for (int i = 0; i < gameState.nPickups; i++) {
+            gameState.pickups.add(new Pickup(r.nextInt(maxPos), r.nextInt(5)));
+        }
     }
 
     /**
@@ -100,6 +107,21 @@ public class ForwardModel {
                 playerAliveIdx = p.playerID;
             }
         }
+
+        // Check if a player picked a pickup
+        ArrayList<Pickup> picked = new ArrayList<>();
+        for (Player p: gameState.players) {
+            if (p.gameStatus == -2) {
+                for (Pickup k : gameState.pickups) {
+                    if (p.position == k.position && k.isActive()) {
+                        k.pick(p);
+                        picked.add(k);
+                    }
+                }
+            }
+        }
+        gameState.pickups.removeAll(picked);
+        gameState.nPickups -= picked.size();
 
         // Tick the button
         gameState.button.tick();
