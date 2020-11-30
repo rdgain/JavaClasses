@@ -6,7 +6,7 @@ import static core.GameState.nTeams;
 
 public abstract class Player {
     protected ForwardModel forwardModel;
-    int playerID;
+    protected int playerID;
     long randomSeed;
     protected Random randomGenerator;
     int teamID;
@@ -14,14 +14,15 @@ public abstract class Player {
     int nOpponentsTagged;
     int position;
 
-    public Player() {}
-
     public Player(Long randomSeed) {
-        if (randomSeed == null) randomSeed = System.currentTimeMillis();
-        this.randomSeed = randomSeed;
+        if (randomSeed == null) {
+            randomGenerator = new Random();
+        } else {
+            this.randomSeed = randomSeed;
+            randomGenerator = new Random(randomSeed);
+        }
         this.gameStatus = -2;
         nOpponentsTagged = 0;
-        randomGenerator = new Random(randomSeed);
     }
 
     /**
@@ -70,6 +71,22 @@ public abstract class Player {
         p.nOpponentsTagged = nOpponentsTagged;
         p.position = position;
         return p;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getGameStatus() {
+        return gameStatus;
+    }
+
+    public int getTeamID() {
+        return teamID;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 
     @Override

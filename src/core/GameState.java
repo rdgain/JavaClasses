@@ -35,7 +35,41 @@ public class GameState {
         for (Map.Entry<Integer, GraphNode> e: maze.entrySet()) {
             gs.maze.put(e.getKey(), e.getValue().copy());
         }
+        gs.width = width;
+        gs.height = height;
         return gs;
+    }
+
+    public HashMap<Integer, GraphNode> getMaze() {
+        return maze;
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public int getGameTick() {
+        return gameTick;
+    }
+
+    public static int getMaxGameTicks() {
+        return maxGameTicks;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getGameStatus(int playerID) {
+        return players[playerID].gameStatus;
     }
 
     @Override

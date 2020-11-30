@@ -1,12 +1,17 @@
 import core.ForwardModel;
 import core.GameState;
 import core.Player;
+import graphToGridDraw.GUI;
 import players.RandomPlayer;
 import utils.StatSummary;
 
+@SuppressWarnings("ConstantConditions")
 public class Run {
 
     public static void main(String[] args) {
+        long frameDelay = 100;  // ms between GUI frame updates
+        boolean visuals = true;  // If true, GUI shows up, otherwise faster to run
+
         // Player array with 6 instances of the random player, randomly chosen different seeds
         Player[] players = new Player[] {
                 new RandomPlayer(),
@@ -32,6 +37,10 @@ public class Run {
             forwardModel.setup(players, gameState);
 //            System.out.println(gameState.toString());
 
+            // Create GUI
+            GUI gui = null;
+            if (visuals) gui = new GUI(gameState.copy());
+
             // Game loop
             while (!gameState.gameEnded) {
                 // Get actions from players
@@ -46,6 +55,15 @@ public class Run {
                 // Print game state and actions played
 //            System.out.println("Actions played: " + Arrays.toString(actions));
 //            System.out.println(gameState.toString());
+
+                if (visuals) {
+                    gui.update(gameState.copy());
+                    try {
+                        Thread.sleep(frameDelay);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             // Final print of game status for all players

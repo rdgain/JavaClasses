@@ -49,6 +49,14 @@ public class Button {
         return b;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean isCurrentlyActive() {
+        return currentlyActive;
+    }
+
     @Override
     public String toString() {
         return "Button{" +

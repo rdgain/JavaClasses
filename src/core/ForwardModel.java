@@ -18,12 +18,12 @@ public class ForwardModel {
      */
     public void setup(Player[] players, GameState gameState) {
         int[] playerStartingPositions = new int[]{
-                17, 122, 242, 29, 134, 254
+                17, 129, 241, 30, 142, 254
         };
 
         gameState.gameTick = 0;
         gameState.gameEnded = false;
-        gameState.button = new Button(128);
+        gameState.button = new Button(136);
         gameState.players = players;
         for (int i = 0; i < players.length; i++) {
             players[i].playerID = i;
@@ -62,18 +62,19 @@ public class ForwardModel {
                 // Tag a player
                 Collection<Integer> neighbouringPositions = connections.values();
                 // Count the number of players in adjacent positions, and save the ID of the last such player
-                int neighbourPlayers = 0;
+                int neighbourOpponents = 0;
                 int neighbour = -1;
                 for (int p = 0; p < gameState.players.length; p++) {
-                    if (p != i) {
+                    if (p != i && gameState.players[p].teamID != gameState.players[i].teamID) {
+                        // Can't tag self, or players on the same team
                         if (neighbouringPositions.contains(gameState.players[p].position)) {
-                            neighbourPlayers ++;
+                            neighbourOpponents ++;
                             neighbour = p;
                         }
                     }
                 }
-                if (neighbourPlayers == 1) {
-                    // If there is only 1 adjacent player, tag them!
+                if (neighbourOpponents == 1) {
+                    // If there is only 1 adjacent opponent, tag them!
                     gameState.players[neighbour].setTagged(gameState.players[i]);
                 }
             } else {

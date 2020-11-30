@@ -10,6 +10,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -30,26 +31,20 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/mazeGraphDraw" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Work\Github\JavaClasses\src\mazeGraphDraw" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="utils" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Work\Github\JavaClasses" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="graphToGridDraw" />
+      <recent name="utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\Github\JavaClasses\src\mazeGraphDraw" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Run">
-    <configuration name="GraphNode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="utils.GraphNode" />
-      <module name="JavaClasses" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GraphToGridDraw" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="graphToGridDraw.GraphToGridDraw" />
+    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="graphToGridDraw.GUI" />
       <module name="JavaClasses" />
       <extension name="coverage">
         <pattern>
@@ -57,6 +52,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphNode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="utils.GraphNode" />
+      <module name="JavaClasses" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -71,7 +73,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Run" />
-        <item itemvalue="Application.GraphToGridDraw" />
+        <item itemvalue="Application.GUI" />
         <item itemvalue="Application.GraphNode" />
       </list>
     </recent_temporary>
@@ -89,7 +91,8 @@
       <workItem from="1605802788526" duration="3034000" />
       <workItem from="1606301955821" duration="7715000" />
       <workItem from="1606383122087" duration="35000" />
-      <workItem from="1606410937689" duration="2217000" />
+      <workItem from="1606410937689" duration="3354000" />
+      <workItem from="1606730952199" duration="4970000" />
     </task>
     <servers />
   </component>
@@ -101,46 +104,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="203" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606326728685" />
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1606321640845">
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1606413275373">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606321640845" />
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606413275373" />
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606325975621">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1606325975621" />
-    <state width="1537" height="432" key="GridCell.Tab.0.bottom" timestamp="1606413159103">
+    <state width="1537" height="264" key="GridCell.Tab.0.bottom" timestamp="1606736038112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="432" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606413159103" />
-    <state width="1537" height="432" key="GridCell.Tab.0.center" timestamp="1606413159103">
+    <state width="1537" height="264" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606736038112" />
+    <state width="1537" height="264" key="GridCell.Tab.0.center" timestamp="1606736038112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="432" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606413159103" />
-    <state width="1537" height="432" key="GridCell.Tab.0.left" timestamp="1606413159103">
+    <state width="1537" height="264" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606736038112" />
+    <state width="1537" height="264" key="GridCell.Tab.0.left" timestamp="1606736038112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="432" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606413159103" />
-    <state width="1537" height="432" key="GridCell.Tab.0.right" timestamp="1606413159103">
+    <state width="1537" height="264" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606736038112" />
+    <state width="1537" height="264" key="GridCell.Tab.0.right" timestamp="1606736038112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="432" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606413159103" />
-    <state width="1537" height="303" key="GridCell.Tab.1.bottom" timestamp="1606327186337">
+    <state width="1537" height="264" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606736038112" />
+    <state width="1537" height="182" key="GridCell.Tab.1.bottom" timestamp="1606735579183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="303" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606327186337" />
-    <state width="1537" height="303" key="GridCell.Tab.1.center" timestamp="1606327186337">
+    <state width="1537" height="182" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606735579183" />
+    <state width="1537" height="182" key="GridCell.Tab.1.center" timestamp="1606735579183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="303" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606327186337" />
-    <state width="1537" height="303" key="GridCell.Tab.1.left" timestamp="1606327186337">
+    <state width="1537" height="182" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606735579183" />
+    <state width="1537" height="182" key="GridCell.Tab.1.left" timestamp="1606735579183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="303" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606327186337" />
-    <state width="1537" height="303" key="GridCell.Tab.1.right" timestamp="1606327186337">
+    <state width="1537" height="182" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606735579183" />
+    <state width="1537" height="182" key="GridCell.Tab.1.right" timestamp="1606735579183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="303" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606327186337" />
+    <state width="1537" height="182" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606735579183" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -152,5 +155,13 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="-2 &gt; maxValue" language="JAVA" />
+        <watch expression="info.getPreferredSize()" language="JAVA" />
+        <watch expression="playerView.getPreferredSize()" language="JAVA" />
+        <watch expression="wrapper.getPreferredSize()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
