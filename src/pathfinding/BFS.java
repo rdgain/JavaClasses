@@ -12,26 +12,40 @@ public class BFS implements Pathfinding {
 
     public void run(GameState gameState, GUIPathfinding gui, int from, int to) {
 
-        // TODO Mark all the vertices as not visited (By default set as false)
+        // Mark all the vertices as not visited (By default set as false)
+        visited = new boolean[gameState.getMaze().size()];
 
-        // TODO Create a queue for BFS
+        // Create a queue for BFS
+        queue = new LinkedList<>();
 
-        // TODO Mark the current node as visited and enqueue it
+        // Mark the current node as visited and enqueue it
+        visited[from] = true;
+        queue.add(from);
 
         // GUI update
-        gui.update(visited, queue);
+        gui.update(visited, queue, null);
 
         // Loop while there are still elements in the queue
         while (queue.size() != 0) {
-            // TODO Dequeue a vertex from queue
+            // Dequeue a vertex from queue
+            int current = queue.poll();
 
-            // TODO Check if this is destination
+            // Check if this is destination
+            if (current == to && to != -1) {
+                break;
+            }
 
-            // TODO Get all adjacent vertices of the dequeued vertex 'current'
-            // TODO If neighbour has not been visited, then mark it visited and enqueue it
+            // Get all adjacent vertices of the dequeued vertex 'current'
+            // If neighbour has not been visited, then mark it visited and enqueue it
+            for (int node : gameState.getMaze().get(current).connections.values()) {
+                if (!visited[node]) {
+                    visited[node] = true;
+                    queue.add(node);
+                }
+            }
 
             // GUI update
-            gui.update(visited, queue);
+            gui.update(visited, queue, null);
             try {
                 Thread.sleep(frameDelay);
             } catch (InterruptedException e) {

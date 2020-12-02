@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class GUIPathfinding extends JFrame {
@@ -60,8 +61,8 @@ public class GUIPathfinding extends JFrame {
         repaint();
     }
 
-    public void update(boolean[] visited, Collection<Integer> queue) {
-        gameView.update(visited, queue);
+    public void update(boolean[] visited, Collection<Integer> queue, ArrayList<Integer> path) {
+        gameView.update(visited, queue, path);
         repaint();
     }
 

@@ -17,6 +17,8 @@ public class GameViewPathFinding extends JComponent {
     // Path finding vars
     boolean[] visited;
     Collection<Integer> queue;
+    ArrayList<Integer> path;
+
     public int from;
     public int to;
 
@@ -85,6 +87,17 @@ public class GameViewPathFinding extends JComponent {
             int nodeXScreen = pos.getX();
             int nodeYScreen = pos.getY();
             g.fillRect(offsetX + nodeXScreen, offsetY + nodeYScreen, cellSize, cellSize);
+        }
+
+        // Draw nodes in the path
+        if (path != null) {
+            g.setColor(new Color(188, 129, 69));
+            for (int i : path) {
+                Vector2D pos = posToScreenCoords(i);
+                int nodeXScreen = pos.getX();
+                int nodeYScreen = pos.getY();
+                g.fillRect(offsetX + nodeXScreen, offsetY + nodeYScreen, cellSize, cellSize);
+            }
         }
 
         g.setColor(Color.black);
@@ -205,9 +218,10 @@ public class GameViewPathFinding extends JComponent {
         return new Vector2D(nodeXScreen, nodeYScreen);
     }
 
-    public void update(boolean[] visited, Collection<Integer> queue) {
+    public void update(boolean[] visited, Collection<Integer> queue, ArrayList<Integer> path) {
         this.visited = visited;
         this.queue = queue;
+        this.path = path;
         repaint();
     }
 

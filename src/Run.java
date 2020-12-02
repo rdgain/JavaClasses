@@ -2,7 +2,10 @@ import core.ForwardModel;
 import core.GameState;
 import core.Player;
 import graphToGridDraw.GUI;
+import players.FlatMC;
 import players.RandomPlayer;
+import players.RandomSearch;
+import players.rhea.RHEA;
 import utils.StatSummary;
 
 @SuppressWarnings("ConstantConditions")
@@ -14,9 +17,9 @@ public class Run {
 
         // Player array with 6 instances of the random player, randomly chosen different seeds
         Player[] players = new Player[] {
-                new RandomPlayer(),
-                new RandomPlayer(),
-                new RandomPlayer(),
+                new FlatMC(),
+                new RHEA(),
+                new RandomSearch(),
                 new RandomPlayer(),
                 new RandomPlayer(),
                 new RandomPlayer()
@@ -29,7 +32,7 @@ public class Run {
         // Create game state and forward model instances
         GameState gameState = new GameState();
         ForwardModel forwardModel = new ForwardModel();
-        int nReps = 1;
+        int nReps = 10;
 
         for (int r = 0; r < nReps; r++) {
 

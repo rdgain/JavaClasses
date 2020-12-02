@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class HeuristicNode extends GraphNode implements Comparable<HeuristicNode> {
     public int distanceFrom, distanceTo;
+    public int parent;
 
     public HeuristicNode(int id) {
         super(id);
@@ -24,6 +25,7 @@ public class HeuristicNode extends GraphNode implements Comparable<HeuristicNode
         n.connections = new HashMap<>(connections);
         n.distanceFrom = distanceFrom;
         n.distanceTo = distanceTo;
+        n.parent = parent;
         return n;
     }
 

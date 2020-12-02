@@ -9,6 +9,7 @@ public class AStar implements Pathfinding {
     long frameDelay = 50;
     boolean[] visited;
     Queue<HeuristicNode> queue;
+    ArrayList<Integer> path;
 
     public void run(GameState gameState, GUIPathfinding gui, int from, int to) {
         // Transform graph nodes to hold extra values
@@ -17,28 +18,52 @@ public class AStar implements Pathfinding {
             maze.put(e.getKey(), new HeuristicNode(e.getValue()));
         }
 
-        // TODO Mark all the vertices as not visited (By default set as false)
+        //  Mark all the vertices as not visited (By default set as false)
+        visited = new boolean[gameState.getMaze().size()];
 
-        // TODO Create a priority Queue.
+        //  Create a priority Queue.
+        queue = new PriorityQueue<>();
 
-        // TODO Mark the current node as visited and enqueue it
+        //  Mark the current node as visited and enqueue it
+        visited[from] = true;
+        maze.get(from).parent = -1;
+        queue.add(maze.get(from));
 
         // GUI update
-        gui.update(visited, objToID(queue));
+        gui.update(visited, objToID(queue), null);
 
         // Loop while there are still elements in the queue
         while (queue.size() != 0) {
-            // TODO Dequeue a vertex from queue
+            //  Dequeue a vertex from queue
+            HeuristicNode current = queue.poll();
 
-            // TODO Check if this is destination
+            //  Check if this is destination
+            if (current.id == to && to != -1) {
+                break;
+            }
 
-            // TODO Get all adjacent vertices of the dequeued vertex 'current'
-            // TODO Calculate distance from origin for all neighbours, 1 more than current's
-            // TODO Calculate approximate distance to target for all neighbours, and sum up the 2 values
-            // TODO If neighbour has not been visited or the distance found is smaller, then mark it visited, update distance and enqueue it
+            //  Get all adjacent vertices of the dequeued vertex 'current'
+            //  Calculate distance from origin for all neighbours, 1 more than current's
+            //  Calculate approximate distance to target for all neighbours, and sum up the 2 values
+            //  If neighbour has not been visited or the distance found is smaller, then mark it visited, update distance and enqueue it
+            for (int next: current.connections.values()) {
+                HeuristicNode nextNode = maze.get(next);
+
+                int distanceFrom = current.distanceFrom + 1;
+                int distanceTo = distanceBetween(next, to, gameState.getWidth());
+                int d = distanceFrom + distanceTo;
+
+                if (!visited[next] || d < (nextNode.distanceFrom + nextNode.distanceTo)) {
+                    visited[next] = true;
+                    nextNode.distanceFrom = distanceFrom;
+                    nextNode.distanceTo = distanceTo;
+                    nextNode.parent = current.id;
+                    queue.add(nextNode);
+                }
+            }
 
             // GUI update
-            gui.update(visited, objToID(queue));
+            gui.update(visited, objToID(queue), null);
             try {
                 Thread.sleep(frameDelay);
             } catch (InterruptedException e) {
@@ -46,11 +71,33 @@ public class AStar implements Pathfinding {
             }
         }
 
+        path = reconstructPath(maze, to);
+        // GUI update
+        gui.update(visited, objToID(queue), path);
+        try {
+            Thread.sleep(frameDelay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Reset GUI variables
         gui.gameView.from = -1;
         gui.gameView.to = -1;
         gui.from.setText("");
         gui.to.setText("");
+    }
+
+    private ArrayList<Integer> reconstructPath(HashMap<Integer, HeuristicNode> maze, int to) {
+        ArrayList<Integer> path = new ArrayList<>();
+        path.add(to);
+        HeuristicNode current = maze.get(to);
+
+        while (current.parent != -1) {
+            current = maze.get(current.parent);
+            path.add(current.id);
+        }
+
+        return path;
     }
 
     /**
