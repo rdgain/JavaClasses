@@ -19,10 +19,22 @@ public class GameView extends JComponent {
     private GameState gameState;
     int cellSize, offsetX = 10, offsetY = 10;
 
-    public GameView(int w, int h, int c) {
+    HashMap<Integer, ArrayList<Integer>> playerPositionHistory;
+    int heatMapOpacity = 20;
+    int playerFocusHeatMap = -1;  // If set to a player ID, only that player's positional heatmap will be drawn
+    Color[] playerColors;
+
+    public GameView(int w, int h, int c, Color[] playerColors) {
         this.gridWidth = w;
         this.gridHeight = h;
         this.cellSize = c;
+        this.playerPositionHistory = new HashMap<>();
+        this.playerColors = new Color[6];
+        for (int i = 0; i < 6; i++) {
+            // 6 players
+            this.playerPositionHistory.put(i, new ArrayList<>());
+            this.playerColors[i] = new Color(playerColors[i].getRed(), playerColors[i].getGreen(), playerColors[i].getBlue(), heatMapOpacity);
+        }
     }
 
     @Override
@@ -34,6 +46,8 @@ public class GameView extends JComponent {
         if (gameState != null) {
             drawMaze(g);
 
+            drawPlayerPositionHeatMap(g);
+
             for (Player p: gameState.getPlayers()) {
                 p.draw(g, gameState, cellSize, offsetX, offsetY);
             }
@@ -41,6 +55,18 @@ public class GameView extends JComponent {
             drawButton(g);
             drawPickups(g);
             drawPlayers(g);
+        }
+    }
+
+    private void drawPlayerPositionHeatMap(Graphics2D g) {
+        for (int p: playerPositionHistory.keySet()) {
+            if (playerFocusHeatMap == -1 || playerFocusHeatMap == p) {
+                g.setColor(playerColors[p]);
+                for (int pos : playerPositionHistory.get(p)) {
+                    Vector2D pos2D = posToScreenCoords(pos, gridWidth, cellSize);
+                    g.fillRect(offsetX + pos2D.getX(), offsetY + pos2D.getY(), cellSize, cellSize);
+                }
+            }
         }
     }
 
@@ -140,6 +166,11 @@ public class GameView extends JComponent {
 
     public void update(GameState gameState) {
         this.gameState = gameState;
+
+        // Update player positions
+        for (Player p: gameState.getPlayers()) {
+            playerPositionHistory.get(p.getPlayerID()).add(p.getPosition());
+        }
     }
 
     @Override

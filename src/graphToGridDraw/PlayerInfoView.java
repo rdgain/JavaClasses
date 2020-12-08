@@ -9,9 +9,11 @@ import java.awt.*;
 public class PlayerInfoView extends JComponent {
     private GameState gameState;
     int cellSize, offsetX = 10, offsetY = 5, spacing = 100;
+    Color[] playerColors;
 
-    public PlayerInfoView(int c) {
+    public PlayerInfoView(int c, Color[] playerColors) {
         this.cellSize = c;
+        this.playerColors = playerColors;
     }
 
     @Override
@@ -29,8 +31,6 @@ public class PlayerInfoView extends JComponent {
         Player[] players = gameState.getPlayers();
         int i = 0;
         for (Player p: players) {
-            // Only draw players still in the game
-
             int nodeXScreen, nodeYScreen;
             if (i < 3) {
                 nodeXScreen = i*cellSize + i * spacing;
@@ -53,13 +53,13 @@ public class PlayerInfoView extends JComponent {
                 edge = new Color(107, 106, 108);
             }
 
-            g.setColor(Color.black);
-            g.drawString("" + p.getPlayerID(), nodeXScreen + cellSize * 3 / 4, nodeYScreen + cellSize / 2);
             g.setColor(team);
             g.fillRect(nodeXScreen + cellSize * 3 / 4, offsetY + nodeYScreen + cellSize * 3 / 4, cellSize / 2, cellSize / 2);
             g.setColor(edge);
             g.drawRect(nodeXScreen + cellSize * 3 / 4, offsetY + nodeYScreen + cellSize * 3 / 4, cellSize / 2, cellSize / 2);
 
+            g.setColor(playerColors[p.getPlayerID()]);
+            g.drawString("" + p.getPlayerID(), nodeXScreen + cellSize * 3 / 4, nodeYScreen + cellSize / 2);
             String score = "Score: " + p.getScore();
             g.drawString(score, nodeXScreen, offsetY + nodeYScreen + cellSize*2);
 

@@ -22,8 +22,17 @@ public class GUI extends JFrame {
     JLabel gameEnded;
     PlayerInfoView playerView;
 
+    Color[] playerColors = new Color[] {
+            new Color(175, 170, 43),
+            new Color(79, 175, 114),
+            new Color(102, 95, 175),
+            new Color(175, 88, 175),
+            new Color(49, 136, 175),
+            new Color(175, 105, 57),
+    };
+
     public GUI(GameState gs) {
-        this.gameView = new GameView(gs.getWidth(), gs.getHeight(), cellSize);
+        this.gameView = new GameView(gs.getWidth(), gs.getHeight(), cellSize, playerColors);
         this.gridWidth = gs.getWidth();
         this.gridHeight = gs.getHeight();
 
@@ -33,7 +42,7 @@ public class GUI extends JFrame {
         gameTick.setAlignmentX(Component.CENTER_ALIGNMENT);
         gameEnded = new JLabel("");
         gameEnded.setAlignmentX(Component.CENTER_ALIGNMENT);
-        playerView = new PlayerInfoView(cellSize);
+        playerView = new PlayerInfoView(cellSize, playerColors);
         info.add(gameTick);
         info.add(gameEnded);
         info.add(playerView);
