@@ -126,6 +126,8 @@
       <workItem from="1606410937689" duration="3354000" />
       <workItem from="1606730952199" duration="14430000" />
       <workItem from="1606924221490" duration="7449000" />
+      <workItem from="1607337178550" duration="4316000" />
+      <workItem from="1607412558915" duration="3717000" />
     </task>
     <servers />
   </component>
@@ -137,54 +139,55 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="203" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606326728685" />
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1606930264594">
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1607337617439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606930264594" />
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607337617439" />
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606325975621">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1606325975621" />
-    <state width="1537" height="150" key="GridCell.Tab.0.bottom" timestamp="1606931677718">
+    <state width="1537" height="224" key="GridCell.Tab.0.bottom" timestamp="1607416072071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="150" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606931677718" />
-    <state width="1537" height="150" key="GridCell.Tab.0.center" timestamp="1606931677718">
+    <state width="1537" height="224" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607416072071" />
+    <state width="1537" height="224" key="GridCell.Tab.0.center" timestamp="1607416072071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="150" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606931677718" />
-    <state width="1537" height="150" key="GridCell.Tab.0.left" timestamp="1606931677718">
+    <state width="1537" height="224" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607416072071" />
+    <state width="1537" height="224" key="GridCell.Tab.0.left" timestamp="1607416072071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="150" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606931677718" />
-    <state width="1537" height="150" key="GridCell.Tab.0.right" timestamp="1606931677718">
+    <state width="1537" height="224" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607416072071" />
+    <state width="1537" height="224" key="GridCell.Tab.0.right" timestamp="1607416072071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="150" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606931677718" />
-    <state width="1537" height="141" key="GridCell.Tab.1.bottom" timestamp="1606747743922">
+    <state width="1537" height="224" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607416072071" />
+    <state width="1537" height="105" key="GridCell.Tab.1.bottom" timestamp="1607414993732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="141" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606747743922" />
-    <state width="1537" height="141" key="GridCell.Tab.1.center" timestamp="1606747743922">
+    <state width="1537" height="105" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607414993732" />
+    <state width="1537" height="105" key="GridCell.Tab.1.center" timestamp="1607414993732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="141" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606747743922" />
-    <state width="1537" height="141" key="GridCell.Tab.1.left" timestamp="1606747743922">
+    <state width="1537" height="105" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607414993732" />
+    <state width="1537" height="105" key="GridCell.Tab.1.left" timestamp="1607414993732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="141" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606747743922" />
-    <state width="1537" height="141" key="GridCell.Tab.1.right" timestamp="1606747743922">
+    <state width="1537" height="105" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607414993732" />
+    <state width="1537" height="105" key="GridCell.Tab.1.right" timestamp="1607414993732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="141" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606747743922" />
+    <state width="1537" height="105" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607414993732" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Application">
-        <watch expression="-2 &gt; maxValue" language="JAVA" />
-        <watch expression="info.getPreferredSize()" language="JAVA" />
-        <watch expression="playerView.getPreferredSize()" language="JAVA" />
-        <watch expression="wrapper.getPreferredSize()" language="JAVA" />
+        <watch expression="child.sumQ/(child.nVisits + epsilon)" language="JAVA" />
+        <watch expression="Math.log(nVisits)" language="JAVA" />
+        <watch expression="sequences" language="JAVA" />
+        <watch expression="actionSequence.hashCode()" language="JAVA" />
+        <watch expression="sequences.containsKey(actionSequence)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

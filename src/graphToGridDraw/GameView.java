@@ -12,6 +12,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static utils.Utils.posToScreenCoords;
+
 public class GameView extends JComponent {
     int gridWidth, gridHeight;
     private GameState gameState;
@@ -31,9 +33,14 @@ public class GameView extends JComponent {
 
         if (gameState != null) {
             drawMaze(g);
+
+            for (Player p: gameState.getPlayers()) {
+                p.draw(g, gameState, cellSize, offsetX, offsetY);
+            }
+
             drawButton(g);
-            drawPlayers(g);
             drawPickups(g);
+            drawPlayers(g);
         }
     }
 
@@ -41,7 +48,7 @@ public class GameView extends JComponent {
         ArrayList<Pickup> pickups = gameState.getPickups();
         for (Pickup p: pickups) {
             if (p.isActive()) {
-                Vector2D pos = posToScreenCoords(p.getPosition());
+                Vector2D pos = posToScreenCoords(p.getPosition(), gridWidth, cellSize);
                 int nodeXScreen = pos.getX();
                 int nodeYScreen = pos.getY();
                 g.setColor(new Color(150, 68, 88));
@@ -55,7 +62,7 @@ public class GameView extends JComponent {
         for (Player p: players) {
             if (p.getGameStatus() != -1) {
                 // Only draw players still in the game
-                Vector2D pos = posToScreenCoords(p.getPosition());
+                Vector2D pos = posToScreenCoords(p.getPosition(), gridWidth, cellSize);
                 int nodeXScreen = pos.getX();
                 int nodeYScreen = pos.getY();
 
@@ -69,7 +76,7 @@ public class GameView extends JComponent {
                 }
 
                 g.setColor(Color.black);
-                g.drawString(offsetX + "" + p.getPlayerID(), offsetY + nodeXScreen + cellSize / 4, nodeYScreen + cellSize / 2);
+                g.drawString("" + p.getPlayerID(), offsetX + nodeXScreen + cellSize / 4, offsetY + nodeYScreen);
                 g.setColor(team);
                 g.fillRect(offsetX + nodeXScreen + cellSize / 4, offsetY + nodeYScreen + cellSize / 4, cellSize / 2, cellSize / 2);
                 g.setColor(edge);
@@ -80,7 +87,7 @@ public class GameView extends JComponent {
 
     private void drawButton(Graphics2D g) {
         Button b = gameState.getButton();
-        Vector2D pos = posToScreenCoords(b.getPosition());
+        Vector2D pos = posToScreenCoords(b.getPosition(), gridWidth, cellSize);
         int nodeXScreen = pos.getX();
         int nodeYScreen = pos.getY();
 
@@ -102,7 +109,7 @@ public class GameView extends JComponent {
     private void drawMaze(Graphics2D g) {
         HashMap<Integer, GraphNode> maze = gameState.getMaze();
         for (GraphNode n : maze.values()) {
-            Vector2D pos = posToScreenCoords(n.id);
+            Vector2D pos = posToScreenCoords(n.id, gridWidth, cellSize);
             int nodeXScreen = pos.getX();
             int nodeYScreen = pos.getY();
 
@@ -129,14 +136,6 @@ public class GameView extends JComponent {
                 g.drawLine(offsetX + nodeXScreen, offsetY + nodeYScreen, offsetX + nodeXScreen, offsetY + nodeYScreen + cellSize);
             }
         }
-    }
-
-    private Vector2D posToScreenCoords(int pos) {
-        int nodeX = pos % gridWidth;
-        int nodeY = pos / gridWidth;
-        int nodeXScreen = nodeX * cellSize;
-        int nodeYScreen = nodeY * cellSize;
-        return new Vector2D(nodeXScreen, nodeYScreen);
     }
 
     public void update(GameState gameState) {

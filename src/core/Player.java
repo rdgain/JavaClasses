@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.*;
 import java.util.Random;
 
 import static core.GameState.nTeams;
@@ -72,6 +73,7 @@ public abstract class Player {
         p.nOpponentsTagged = nOpponentsTagged;
         p.position = position;
         p.score = score;
+        p.forwardModel = forwardModel;
         return p;
     }
 
@@ -106,4 +108,6 @@ public abstract class Player {
                 ", score=" + score +
                 '}';
     }
+
+    public void draw(Graphics2D g, GameState gs, int cellSize, int offsetX, int offsetY) {}
 }

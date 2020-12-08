@@ -59,7 +59,7 @@ public class ForwardModel {
         for (int i = 0; i < actions.length; i++) {
             int action = actions[i];
 
-            if (action <= 0) continue; // Do nothing
+            if (action <= 0 || gameState.getGameStatus(i) != -2) continue; // Do nothing
 
             // Find this player's position and neighbouring positions
             int position = gameState.players[i].position;
