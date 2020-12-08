@@ -79,6 +79,8 @@ public class Run {
                 if (status == 0) stats[i].addDraw();
                 if (status == -1) stats[i].addLoss();
                 stats[i].addScore(players[i].getScore());
+
+                // TODO: other statistics can be extracted: level % exploration per player, % actions played successfully executed, % TAG action (player aggression) etc.
             }
             System.out.println();
         }
