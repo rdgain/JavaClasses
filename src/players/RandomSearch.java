@@ -20,7 +20,7 @@ public class RandomSearch extends Player {
     Individual actionSequence;  // Action sequence chosen for execution
     double[] qBounds;  // Value bounds (lowest and highest fitness values found)
 
-    boolean drawing = true;  // If true, drawing action sequences
+    boolean drawing = false;  // If true, drawing action sequences
 
     public RandomSearch() {
         this(null);

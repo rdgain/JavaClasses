@@ -5,6 +5,7 @@ import graphToGridDraw.GUI;
 import players.FlatMC;
 import players.RandomPlayer;
 import players.RandomSearch;
+import players.mcts.MCTS;
 import players.rhea.RHEA;
 import utils.StatSummary;
 
@@ -19,10 +20,10 @@ public class Run {
         Player[] players = new Player[] {
                 new FlatMC(),
                 new RHEA(),
-                new RandomSearch(),
+                new MCTS(),
                 new RandomPlayer(),
                 new RandomPlayer(),
-                new RandomPlayer()
+                new RandomSearch()
         };
         StatSummary[] stats = new StatSummary[players.length];
         for (int i = 0; i < players.length; i++) {
