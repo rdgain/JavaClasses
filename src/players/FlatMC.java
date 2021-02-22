@@ -64,7 +64,8 @@ public class FlatMC extends Player {
         if (gameStatus != -2) {
             return gameStatus * gameState.getWidth() * gameState.getHeight();
         }
-        return getScore();
+        Player me = gameState.getPlayers()[playerID];
+        return me.getScore();
     }
 
     @Override

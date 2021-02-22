@@ -47,7 +47,7 @@ public class TreeNode {
                 double averageQ = child.sumQ / (child.nVisits+epsilon);
                 averageQ = Utils.normalise(averageQ, qBounds[0], qBounds[1]);
                 double log = Math.log(nVisits+epsilon);
-                double sqrt = log / (child.nVisits+epsilon); // Math.sqrt();
+                double sqrt = Math.sqrt(log / (child.nVisits+epsilon));
                 double ucbValue = averageQ + C * sqrt;
 
                 if (ucbValue > maxValue) {
@@ -83,7 +83,7 @@ public class TreeNode {
         if (value < qBounds[0]) qBounds[0] = value;
 
         TreeNode node = this;
-        while (node.parent != null) {
+        while (node != null) {
             node.sumQ += value;
             node.nVisits += 1;
             node = node.parent;
@@ -92,11 +92,12 @@ public class TreeNode {
 
     public int mostVisitedAction() {
         int mostVisited = -1;
-        int maxVisits = 0;
+        double maxVisits = 0;
 
         for (int i = 0; i < children.length; i++) {
-            if (children[i].nVisits > maxVisits) {
-                maxVisits = children[i].nVisits;
+            double v = Utils.noise(children[i].nVisits, epsilon, new Random().nextDouble());
+            if (v > maxVisits) {
+                maxVisits = v;
                 mostVisited = i;
             }
         }

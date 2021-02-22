@@ -1,22 +1,29 @@
 package players.mcts;
 
+import core.ForwardModel;
 import core.GameState;
 import core.Player;
 import mazeGraphDraw.Vector2D;
+import players.FlatMC;
+import players.RandomPlayer;
+import players.RandomSearch;
+import players.rhea.RHEA;
 import utils.Utils;
 
 import java.awt.*;
+import java.util.HashMap;
 
 import static utils.Utils.posToScreenCoords;
 
 public class MCTS extends Player {
 
-    int nIterations = 50;
-    int rolloutLength = 100;
+    int nIterations = 500;
+    int rolloutLength = 0;
 
     TreeNode root;
 
     boolean drawing = true;
+    HashMap<Integer, Integer> positionHistory;
 
     public MCTS() {
         this(null);
@@ -24,11 +31,13 @@ public class MCTS extends Player {
 
     public MCTS(Long randomSeed) {
         super(randomSeed);
+        positionHistory = new HashMap<>();
     }
 
     @Override
     public int act(GameState gameState) {
         root = new TreeNode(null, -1, null);
+        positionHistory.put(getPosition(), positionHistory.getOrDefault(getPosition(), 0) + 1);
 
         for (int i = 0; i < nIterations; i++) {
             GameState gsCopy = gameState.copy();
@@ -67,9 +76,16 @@ public class MCTS extends Player {
     private double evaluate(GameState gameState) {
         int gameStatus = gameState.getGameStatus(playerID);
         if (gameStatus != -2) {
-            return gameStatus * gameState.getWidth() * gameState.getHeight();
+            return gameStatus;
         }
-        return getScore();
+        Player me = gameState.getPlayers()[playerID];
+        double reward = me.getScore()*1.0 / (gameState.getWidth() * gameState.getHeight());
+
+        // Avoid going back to the same positions, explore more
+        int nVisits = positionHistory.getOrDefault(me.getPosition(), 0);
+        double visited = - nVisits* 1.0 / gameState.getGameTick();
+
+        return reward * 0.5 + visited * 0.5;
     }
 
     /**
@@ -93,6 +109,7 @@ public class MCTS extends Player {
     protected Player _copy() {
         MCTS copy = new MCTS();
         copy.root = root;
+        copy.positionHistory = positionHistory;
         return copy;
     }
 
@@ -131,4 +148,5 @@ public class MCTS extends Player {
             }
         }
     }
+
 }
