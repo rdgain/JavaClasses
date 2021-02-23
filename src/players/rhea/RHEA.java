@@ -2,6 +2,7 @@ package players.rhea;
 
 import core.GameState;
 import core.Player;
+import graphToGridDraw.GUI;
 import mazeGraphDraw.Vector2D;
 import utils.Utils;
 
@@ -31,7 +32,7 @@ public class RHEA extends Player {
     }
 
     @Override
-    public int act(GameState gameState) {
+    public int act(GameState gameState, GUI gui) {
         // Initialise variables for game tick
         int nActions = 6;
         sequences = new HashMap<>();
@@ -109,22 +110,6 @@ public class RHEA extends Player {
 
         // Return value with small noise applied to distinguish between equal values
         return Utils.noise(q, epsilon, randomGenerator.nextDouble());
-    }
-
-    /**
-     * Evaluate a game state. Returns game score, unless the player's win status has been decided, in which case it
-     * returns that multiplied to wrap around the score values. Score is the number of pickups in a level, and
-     * there are always maximum gridWidth*gridHeight pickups.
-     * @param gameState - game state to evaluate
-     * @return - value of state
-     */
-    private double evaluate(GameState gameState) {
-        int gameStatus = gameState.getGameStatus(playerID);
-        if (gameStatus != -2) {
-            return gameStatus * gameState.getWidth() * gameState.getHeight();
-        }
-        Player me = gameState.getPlayers()[playerID];
-        return me.getScore();
     }
 
     /**

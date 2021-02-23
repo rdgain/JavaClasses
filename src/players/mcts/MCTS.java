@@ -1,29 +1,22 @@
 package players.mcts;
 
-import core.ForwardModel;
 import core.GameState;
 import core.Player;
+import graphToGridDraw.GUI;
 import mazeGraphDraw.Vector2D;
-import players.FlatMC;
-import players.RandomPlayer;
-import players.RandomSearch;
-import players.rhea.RHEA;
 import utils.Utils;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import static utils.Utils.posToScreenCoords;
+import static utils.Utils.*;
 
 public class MCTS extends Player {
 
     int nIterations = 500;
-    int rolloutLength = 0;
-
+    int rolloutLength = 5;
+    boolean saveRolloutNodes = false;
     TreeNode root;
-
-    boolean drawing = true;
-    HashMap<Integer, Integer> positionHistory;
 
     public MCTS() {
         this(null);
@@ -31,61 +24,70 @@ public class MCTS extends Player {
 
     public MCTS(Long randomSeed) {
         super(randomSeed);
-        positionHistory = new HashMap<>();
     }
 
     @Override
-    public int act(GameState gameState) {
-        root = new TreeNode(null, -1, null);
-        positionHistory.put(getPosition(), positionHistory.getOrDefault(getPosition(), 0) + 1);
+    public int act(GameState gameState, GUI gui) {
+        if (drawingIteration && visuals) {
+            gameState.getPlayers()[playerID] = this;
+            gui.update(gameState, false);
+        }
 
+        root = new TreeNode(null, -1, null);
+
+        ArrayList<Integer> iterPos = new ArrayList<>();;
         for (int i = 0; i < nIterations; i++) {
             GameState gsCopy = gameState.copy();
+            if (drawingIteration && visuals) {
+                iterPos.clear();
+            }
 
             // Selection
             TreeNode selected = root;
             while (selected.isFullyExpanded()) {
                 selected = selected.treePolicy();
                 forwardModel.next(getActions(selected.childIdx), gsCopy);
+                if (drawingIteration && visuals) {
+                    iterPos.add(gsCopy.getPlayers()[playerID].getPosition());
+                }
             }
 
             // Expansion
             TreeNode newNode = selected.addRandomChild(randomGenerator);
             forwardModel.next(getActions(newNode.childIdx), gsCopy);
+            if (drawingIteration && visuals) {
+                iterPos.add(gsCopy.getPlayers()[playerID].getPosition());
+            }
 
             // Simulation
             for (int r = 0; r < rolloutLength; r++) {
-                forwardModel.next(getActions(randomGenerator.nextInt(6)), gsCopy);
+                int act = randomGenerator.nextInt(6);
+                if (saveRolloutNodes) {
+                    newNode = newNode.addChild(act);
+                }
+                forwardModel.next(getActions(act), gsCopy);
+                if (drawingIteration && visuals) {
+                    iterPos.add(gsCopy.getPlayers()[playerID].getPosition());
+                }
             }
 
             // Backpropagation
             double value = evaluate(gsCopy);
             newNode.backpropagate(value);
+
+            if (drawingIteration && visuals) {
+                gui.drawPosSequence(iterPos);
+                gui.repaint();
+
+                try {
+                    Thread.sleep(frameDelayIter);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return root.mostVisitedAction();
-    }
-
-    /**
-     * Evaluate a game state. Returns game score, unless the player's win status has been decided, in which case it
-     * returns that multiplied to wrap around the score values. Score is the number of pickups in a level, and
-     * there are always maximum gridWidth*gridHeight pickups.
-     * @param gameState - game state to evaluate
-     * @return - value of state
-     */
-    private double evaluate(GameState gameState) {
-        int gameStatus = gameState.getGameStatus(playerID);
-        if (gameStatus != -2) {
-            return gameStatus;
-        }
-        Player me = gameState.getPlayers()[playerID];
-        double reward = me.getScore()*1.0 / (gameState.getWidth() * gameState.getHeight());
-
-        // Avoid going back to the same positions, explore more
-        int nVisits = positionHistory.getOrDefault(me.getPosition(), 0);
-        double visited = - nVisits* 1.0 / gameState.getGameTick();
-
-        return reward * 0.5 + visited * 0.5;
     }
 
     /**
@@ -115,7 +117,7 @@ public class MCTS extends Player {
 
     @Override
     public void draw(Graphics2D g, GameState gs, int cellSize, int offsetX, int offsetY) {
-        if (root != null && drawing) {
+        if (root != null) {
             Stroke s = g.getStroke();
             g.setStroke(new BasicStroke(1));
             drawNode(root, g, gs, cellSize, offsetX, offsetY);

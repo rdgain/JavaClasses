@@ -72,10 +72,16 @@ public class TreeNode {
             }
         }
 
-        TreeNode child = new TreeNode(this, randomChoice, qBounds);
-        children[randomChoice] = child;
+        return addChild(randomChoice);
+    }
 
-        return child;
+    public TreeNode addChild(int idx) {
+        if (children[idx] == null) {
+            TreeNode child = new TreeNode(this, idx, qBounds);
+            children[idx] = child;
+            return child;
+        }
+        return null;
     }
 
     public void backpropagate(double value) {

@@ -9,18 +9,23 @@ import players.mcts.MCTS;
 import players.rhea.RHEA;
 import utils.StatSummary;
 
+import static utils.Utils.visuals;
+import static utils.Utils.frameDelay;
+
 @SuppressWarnings("ConstantConditions")
 public class Run {
 
     public static void main(String[] args) {
-        long frameDelay = 100;  // ms between GUI frame updates
-        boolean visuals = true;  // If true, GUI shows up, otherwise faster to run
 
         // Player array with 6 instances of the random player, randomly chosen different seeds
+        MCTS mcts = new MCTS();
+//        mcts.drawing = true;
+//        mcts.drawingIteration = true;
+
         Player[] players = new Player[] {
                 new FlatMC(),
                 new RHEA(),
-                new MCTS(),
+                mcts,
                 new RandomPlayer(),
                 new RandomPlayer(),
                 new RandomSearch()
@@ -50,7 +55,7 @@ public class Run {
                 // Get actions from players
                 int[] actions = new int[players.length];
                 for (int i = 0; i < players.length; i++) {
-                    actions[i] = players[i].act(gameState.copy());
+                    actions[i] = players[i].superAct(gameState.copy(), gui);
                 }
 
                 // Advance game state by one tick
@@ -61,7 +66,7 @@ public class Run {
 //            System.out.println(gameState.toString());
 
                 if (visuals) {
-                    gui.update(gameState.copy());
+                    gui.update(gameState.copy(), true);
                     try {
                         Thread.sleep(frameDelay);
                     } catch (InterruptedException e) {

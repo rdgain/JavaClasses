@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GUI extends JFrame {
     GameState gs;
@@ -57,7 +58,7 @@ public class GUI extends JFrame {
         getContentPane().add(wrapper);
 
         // Update game state info
-        update(gs);
+        update(gs, true);
 
         // Frame properties
         pack();
@@ -66,7 +67,7 @@ public class GUI extends JFrame {
         repaint();
     }
 
-    public void update(GameState gs) {
+    public void update(GameState gs, boolean recordPos) {
         this.gs = gs;
 
         gameTick.setText("Game tick: " + gs.getGameTick() + " / " + GameState.getMaxGameTicks());
@@ -75,7 +76,7 @@ public class GUI extends JFrame {
         }
 
         playerView.update(gs);
-        gameView.update(gs);
+        gameView.update(gs, recordPos);
         repaint();
     }
 
@@ -88,5 +89,9 @@ public class GUI extends JFrame {
 
     public Dimension getPreferredSize() {
         return new Dimension(gameView.getPreferredSize().width, gameView.getPreferredSize().height + info.getPreferredSize().height);
+    }
+
+    public void drawPosSequence(ArrayList<Integer> iterPos) {
+        gameView.posSequence = iterPos;
     }
 }

@@ -2,6 +2,7 @@ package players;
 
 import core.GameState;
 import core.Player;
+import graphToGridDraw.GUI;
 
 public class RandomPlayer extends Player {
 
@@ -13,7 +14,7 @@ public class RandomPlayer extends Player {
     }
 
     @Override
-    public int act(GameState gameState) {
+    public int act(GameState gameState, GUI gui) {
         return randomGenerator.nextInt(6);
     }
 

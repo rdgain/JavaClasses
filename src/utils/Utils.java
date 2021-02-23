@@ -3,6 +3,10 @@ package utils;
 import mazeGraphDraw.Vector2D;
 
 public class Utils {
+    public static long frameDelay = 100;  // ms between GUI frame updates
+    public static long frameDelayIter = 100;  // ms between GUI frame updates
+    public static boolean visuals = true;  // If true, GUI shows up, otherwise faster to run
+
     /**
      * Adds a small noise to the input value.
      * @param input value to be altered

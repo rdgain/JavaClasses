@@ -24,6 +24,9 @@ public class GameView extends JComponent {
     int playerFocusHeatMap = -1;  // If set to a player ID, only that player's positional heatmap will be drawn
     Color[] playerColors;
 
+
+    ArrayList<Integer> posSequence;
+
     public GameView(int w, int h, int c, Color[] playerColors) {
         this.gridWidth = w;
         this.gridHeight = h;
@@ -49,7 +52,18 @@ public class GameView extends JComponent {
             drawPlayerPositionHeatMap(g);
 
             for (Player p: gameState.getPlayers()) {
-                p.draw(g, gameState, cellSize, offsetX, offsetY);
+                if (p.drawing) {
+                    p.draw(g, gameState, cellSize, offsetX, offsetY);
+                }
+            }
+
+            if (posSequence != null) {
+                for (int p: posSequence) {
+                    g.setColor(new Color(0,0,0, 205));
+                    Vector2D pos2D = posToScreenCoords(p, gridWidth, cellSize);
+                    g.fillRect(offsetX + pos2D.getX() + cellSize/4, offsetY + pos2D.getY() + cellSize/4, cellSize/2, cellSize/2);
+                }
+                posSequence = null;
             }
 
             drawButton(g);
@@ -57,6 +71,8 @@ public class GameView extends JComponent {
             drawPlayers(g);
         }
     }
+
+
 
     private void drawPlayerPositionHeatMap(Graphics2D g) {
         for (int p: playerPositionHistory.keySet()) {
@@ -164,12 +180,14 @@ public class GameView extends JComponent {
         }
     }
 
-    public void update(GameState gameState) {
+    public void update(GameState gameState, boolean recordPos) {
         this.gameState = gameState;
 
         // Update player positions
-        for (Player p: gameState.getPlayers()) {
-            playerPositionHistory.get(p.getPlayerID()).add(p.getPosition());
+        if (recordPos) {
+            for (Player p : gameState.getPlayers()) {
+                playerPositionHistory.get(p.getPlayerID()).add(p.getPosition());
+            }
         }
     }
 
