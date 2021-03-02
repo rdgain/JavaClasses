@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="JavaClasses:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2b2f4e8d-490a-43b2-98b9-9c598db3d9b2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +35,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/mazeGraphDraw" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -82,7 +90,7 @@
       </method>
     </configuration>
     <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Run" />
+      <option name="MAIN_CLASS_NAME" value="utils.Run" />
       <module name="JavaClasses" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -133,6 +141,9 @@
       <workItem from="1614013401330" duration="2506000" />
       <workItem from="1614015924289" duration="634000" />
       <workItem from="1614092745347" duration="3987000" />
+      <workItem from="1614347653614" duration="1510000" />
+      <workItem from="1614437402469" duration="1129000" />
+      <workItem from="1614677861404" duration="40000" />
     </task>
     <servers />
   </component>
@@ -148,6 +159,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607531142757" />
+    <state x="527" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1614437431459">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="527" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1614437431459" />
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606325975621">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -156,22 +171,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607527918587" />
-    <state width="1537" height="212" key="GridCell.Tab.0.bottom" timestamp="1614106621888">
+    <state width="1537" height="171" key="GridCell.Tab.0.bottom" timestamp="1614349199353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614106621888" />
-    <state width="1537" height="212" key="GridCell.Tab.0.center" timestamp="1614106621888">
+    <state width="1537" height="171" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614349199353" />
+    <state width="1537" height="171" key="GridCell.Tab.0.center" timestamp="1614349199353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="212" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614106621888" />
-    <state width="1537" height="212" key="GridCell.Tab.0.left" timestamp="1614106621888">
+    <state width="1537" height="171" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614349199353" />
+    <state width="1537" height="171" key="GridCell.Tab.0.left" timestamp="1614349199353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="212" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614106621888" />
-    <state width="1537" height="212" key="GridCell.Tab.0.right" timestamp="1614106621888">
+    <state width="1537" height="171" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614349199353" />
+    <state width="1537" height="171" key="GridCell.Tab.0.right" timestamp="1614349199353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="212" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614106621888" />
+    <state width="1537" height="171" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614349199353" />
     <state width="1537" height="212" key="GridCell.Tab.1.bottom" timestamp="1614106621888">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -188,10 +203,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1537" height="212" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614106621888" />
-    <state x="277" y="55" key="SettingsEditor" timestamp="1614015910830">
+    <state x="277" y="0" key="SettingsEditor" timestamp="1614437442096">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614015910830" />
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614437442096" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

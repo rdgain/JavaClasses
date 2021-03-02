@@ -33,10 +33,10 @@ public class PlayerInfoView extends JComponent {
         for (Player p: players) {
             int nodeXScreen, nodeYScreen;
             if (i < 3) {
-                nodeXScreen = i*cellSize + i * spacing;
+                nodeXScreen = offsetX + i*cellSize + i * spacing;
                 nodeYScreen = 0;
             } else {
-                nodeXScreen = (i-3)*cellSize + (i-3) * spacing;
+                nodeXScreen = offsetX + (i-3)*cellSize + (i-3) * spacing;
                 nodeYScreen = offsetY*2 + 45 + cellSize;
             }
 

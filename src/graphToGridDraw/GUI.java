@@ -1,10 +1,13 @@
 package graphToGridDraw;
 
 import core.GameState;
+import players.mcts.MCTS;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +35,7 @@ public class GUI extends JFrame {
             new Color(175, 105, 57),
     };
 
-    public GUI(GameState gs) {
+    public GUI(GameState gs, MCTS mcts) {
         this.gameView = new GameView(gs.getWidth(), gs.getHeight(), cellSize, playerColors);
         this.gridWidth = gs.getWidth();
         this.gridHeight = gs.getHeight();
@@ -64,6 +67,21 @@ public class GUI extends JFrame {
         pack();
         this.setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        JOptionPane.showInputDialog(new JPanel(),"Ready?", null);
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyPressed(KeyEvent e) { }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    mcts.drawingIteration = !mcts.drawingIteration;
+                }
+            }
+        });
         repaint();
     }
 

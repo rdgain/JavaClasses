@@ -1,3 +1,5 @@
+package utils;
+
 import core.ForwardModel;
 import core.GameState;
 import core.Player;
@@ -19,7 +21,7 @@ public class Run {
 
         // Player array with 6 instances of the random player, randomly chosen different seeds
         MCTS mcts = new MCTS();
-//        mcts.drawing = true;
+        mcts.drawing = true;
 //        mcts.drawingIteration = true;
 
         Player[] players = new Player[] {
@@ -48,10 +50,11 @@ public class Run {
 
             // Create GUI
             GUI gui = null;
-            if (visuals) gui = new GUI(gameState.copy());
+            if (visuals) gui = new GUI(gameState.copy(), mcts);
 
             // Game loop
             while (!gameState.gameEnded) {
+
                 // Get actions from players
                 int[] actions = new int[players.length];
                 for (int i = 0; i < players.length; i++) {
